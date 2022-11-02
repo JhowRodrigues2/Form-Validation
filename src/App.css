@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,800;1,200;1,600;1,700&display=swap");
+body {
+  font-family: "Montserrat", sans-serif;
+}
+input[type="text"]:focus + .i {
+  color: #1e90ff;
+  animation: move 0.6s forwards;
+}
+input[type="text"] {
+  transition: 0.3s;
+}
+input[type="email"]:focus + .i {
+  color: #1e90ff;
+  animation: move 0.6s forwards;
+}
+input[type="email"] {
+  transition: 0.3s;
+}
+
+input[type="number"]:focus + .i {
+  color: #1e90ff;
+  animation: move 0.6s forwards;
+}
+input[type="number"] {
+  transition: 0.3s;
+}
+.i {
+  transition: 0.3s;
+  animation: icon;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-60%);
+  }
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+input:focus:-moz-placeholder {
+  /* Firefox 18- */
+  color: transparent;
+}
+input:focus::-moz-placeholder {
+  /* Firefox 19+ */
+  color: transparent;
+}
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
