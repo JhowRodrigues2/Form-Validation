@@ -3,7 +3,7 @@ import Form from "./Components/Form";
 function App() {
   return (
     <div
-      className="flex justify-center items-center w-full h-screen
+      className="flex justify-center items-center w-full h-screen p-10
     "
     >
       <Form />

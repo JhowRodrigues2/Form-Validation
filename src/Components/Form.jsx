@@ -19,6 +19,7 @@ const schema = yup
     phone: yup
       .string()
       .min(11, "telefone deve conter DDD + Número")
+      .max(11, "Número inválido")
       .required("O Telefone é obrigatório!"),
     CPF: yup
       .string()
@@ -29,6 +30,7 @@ const schema = yup
   .required();
 
 const Form = () => {
+  const [data, setDATA] = useState([]);
   const {
     register,
     handleSubmit,
@@ -36,10 +38,11 @@ const Form = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   function onSubmit(e) {
+    setDATA(e);
     console.log(e);
   }
   return (
-    <div className="bg-[#e6e6e6] flex h-[60vh] w-[700px] rounded-lg gap-3 p-10">
+    <div className="bg-[#e6e6e6] flex  h-[70vh] w-[700px] rounded-lg gap-3 p-10">
       <div className=" hidden h-[100%] xl:flex flex-col justify-center items-center">
         <img src={formImg} alt="" className="w-3/3 h-1/2" />
       </div>
@@ -51,8 +54,14 @@ const Form = () => {
         <h1 className="font-bold text-lg text-[#1E90FF]">Dados Pessoais</h1>
         <div className="relative">
           <input
+            type="text"
+            placeholder="Nome"
             {...register("name", { required: true })}
-            className=" text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-[#aaa] focus:border-[#1E90FF] shadow shadow-blue-500/40"
+            className={
+              errors.name
+                ? "text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-red-500"
+                : `text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-[#aaa] focus:border-[#1E90FF] shadow shadow-blue-500/40`
+            }
           />
 
           <FaUser className="i absolute left-0 top-3 ml-[20px] text-center text-sm text-[#aaa]" />
@@ -64,8 +73,14 @@ const Form = () => {
         </div>
         <div className="relative">
           <input
+            type="text"
+            placeholder="Email"
             {...register("email", { required: true })}
-            className="text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-[#aaa] focus:border-[#1E90FF] shadow shadow-blue-500/40"
+            className={
+              errors.email
+                ? "text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-red-500"
+                : `text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-[#aaa] focus:border-[#1E90FF] shadow shadow-blue-500/40`
+            }
           />
           <AiOutlineMail className="i absolute left-0 top-3 ml-[20px] text-center text-sm text-[#aaa]" />
           {errors.email && (
@@ -76,10 +91,14 @@ const Form = () => {
         </div>
         <div className="relative">
           <input
-            type="text"
+            type="number"
             {...register("phone", { required: true })}
             placeholder="(00)00000-0000"
-            className=" text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-[#aaa] focus:border-[#1E90FF] shadow shadow-blue-500/40"
+            className={
+              errors.phone
+                ? "text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-red-500"
+                : `text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-[#aaa] focus:border-[#1E90FF] shadow shadow-blue-500/40`
+            }
           />
           <BsTelephoneInbound className="i absolute left-0 top-3 ml-[20px] text-center text-sm text-[#aaa]" />
           {errors.phone && (
@@ -90,10 +109,14 @@ const Form = () => {
         </div>
         <div className="relative">
           <input
-            type="text"
+            type="number"
             {...register("CPF", { required: true })}
             placeholder="CPF, apenas números "
-            className=" text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-[#aaa] focus:border-[#1E90FF] shadow shadow-blue-500/40"
+            className={
+              errors.CPF
+                ? "text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-red-500"
+                : `text-[#666] w-full rounded-2xl h-10 pl-10 outline-none box-border border-2 border-[#aaa] focus:border-[#1E90FF] shadow shadow-blue-500/40`
+            }
           />
           <HiOutlineIdentification className="i absolute left-0 top-3 ml-[20px] text-center text-sm text-[#aaa]" />
           {errors.CPF && (
